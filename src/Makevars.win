@@ -1,0 +1,7 @@
+PKG_CPPFLAGS += -I. -I"C:/SAM/sam-sdk-2017-1-17-r4"
+
+ifeq "$(WIN)" "64"
+	PKG_LIBS += -L"C:/SAM/sam-sdk-2017-1-17-r4/win64/" -lssc
+else
+  PKG_LIBS += -L"C:/SAM/sam-sdk-2017-1-17-r4/win32/" -lssc
+endif
