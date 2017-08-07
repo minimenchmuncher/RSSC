@@ -25,22 +25,10 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// R_ssc_module_create
-int R_ssc_module_create(std::string x);
-RcppExport SEXP _RSSC_R_ssc_module_create(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(R_ssc_module_create(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RSSC_R_ssc_version", (DL_FUNC) &_RSSC_R_ssc_version, 0},
     {"_RSSC_R_ssc_build_info", (DL_FUNC) &_RSSC_R_ssc_build_info, 0},
-    {"_RSSC_R_ssc_module_create", (DL_FUNC) &_RSSC_R_ssc_module_create, 1},
     {NULL, NULL, 0}
 };
 

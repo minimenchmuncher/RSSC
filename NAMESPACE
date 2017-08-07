@@ -2,6 +2,7 @@
 
 export(R_ssc_build_info)
 export(R_ssc_version)
-export(timesTwo)
+export(get_common_types)
+export(instantiate_class)
 importFrom(Rcpp,sourceCpp)
 useDynLib(RSSC)

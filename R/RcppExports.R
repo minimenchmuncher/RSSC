@@ -11,8 +11,3 @@ R_ssc_build_info <- function() {
     .Call('_RSSC_R_ssc_build_info', PACKAGE = 'RSSC')
 }
 
-#'@export
-R_ssc_module_create <- function(x) {
-    .Call('_RSSC_R_ssc_module_create', PACKAGE = 'RSSC', x)
-}
-
