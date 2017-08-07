@@ -1,0 +1,179 @@
+pvwattsv5:
+  solar_resource_file:
+    type: character
+    default: NA_character_
+    require: FALSE
+  solar_resource_data:
+    type: data.frame
+    default: data.frame()
+    require: FALSE
+  system_capacity:
+    type: numeric
+    default: NA_real_
+    require: TRUE
+  module_type:
+    type: integer
+    default: 0
+    require: FALSE
+  dc_ac_ratio:
+    type: numeric
+    default: 1.1
+    require: FALSE
+  inv_eff:
+    type: numeric
+    default: 96
+    require: FALSE
+  losses:
+    type: numeric
+    default: NA_real_
+    require: TRUE
+  array_type:
+    type: integer
+    default: NA_integer_
+    require: TRUE
+  tilt:
+    type: numeric
+    default: NA_real_
+    require: TRUE
+  azimuth:
+    type: numeric
+    default: NA_real_
+    require: TRUE
+  gcr:
+    type: numeric
+    default: 0.4
+    require: FALSE
+  shading_timestep:
+    type: matrix
+    default: matrix()
+    require: FALSE
+  shading_mxh:
+    type: matrix
+    default: matrix()
+    require: FALSE
+  shading_azal:
+    type: matrix
+    default: matrix()
+    require: FALSE
+  shading_diff:
+    type: numeric
+    default: NA_real_
+    require: FALSE
+  batt_simple_enable:
+    type: logical
+    default: FALSE
+    require: FALSE
+  gh:
+    type: numeric
+    default: NA_real_
+  dn:
+    type: numeric
+    default: NA_real_
+  df:
+    type: numeric
+    default: NA_real_
+  tamb:
+    type: numeric
+    default: NA_real_
+  wspd:
+    type: numeric
+    default: NA_real_
+  sunup:
+    type: logical
+    default: NA
+  shad_beam_factor:
+    type: numeric
+    default: NA_real_
+  aoi:
+    type: numeric
+    default: NA_real_
+  poa:
+    type: numeric
+    default: NA_real_
+  tpoa:
+    type: numeric
+    default: NA_real_
+  tcell:
+    type: numeric
+    default: NA_real_
+  dc:
+    type: numeric
+    default: NA_real_
+  ac:
+    type: numeric
+    default: NA_real_
+  poa_monthly:
+    type: numeric
+    default: NA_real_
+  solrad_monthly:
+    type: numeric
+    default: NA_real_
+  dc_monthly:
+    type: numeric
+    default: NA_real_
+  ac_monthly:
+    type: numeric
+    default: NA_real_
+  monthly_energy:
+    type: numeric
+    default: NA_real_
+  solrad_annual:
+    type: numeric
+    default: NA_real_
+  ac_annual:
+    type: numeric
+    default: NA_real_
+  annual_energy:
+    type: numeric
+    default: NA_real_
+  capacity_factor:
+    type: numeric
+    default: NA_real_
+  kwh_per_kw:
+    type: numeric
+    default: NA_real_
+  location:
+    type: character
+    default: NA_character_
+  city:
+    type: character
+    default: NA_character_
+  state:
+    type: character
+    default: NA_character_
+  lat:
+    type: numeric
+    default: NA_real_
+  lon:
+    type: numeric
+    default: NA_real_
+  tz:
+    type: numeric
+    default: NA_real_
+  elev:
+    type: numeric
+    default: NA_real_
+  inverter_model:
+    type: integer
+    default: NA_integer_
+  inverter_efficiency:
+    type: numeric
+    default: 96
+  ts_shift_hours:
+    type: numeric
+    default: NA_real_
+  system_use_lifetime_output:
+    type: logical
+    default: NA
+  adjust_constant:
+    type: numeric
+    default: NA_real_
+    require: TRUE
+  adjust_hourly:
+    type: numeric
+    default: NA_real_
+    require: FALSE
+  adjust_periods:
+    type: matrix
+    default: matrix(ncol = 3)
+    require: FALSE

@@ -1,14 +1,19 @@
 Package: RSSC
 Type: Package
-Title: What the Package Does (Title Case)
+Title: R Wrapper for NREL's SAM Simulation Core library
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Ezra Tucker
+Maintainer: Ezra Tucker <ezztucker@gmail.com>
+Description: This is a wrapper package, providing an R/C++ interface for use with
+    NREL's SAM Simulation Core (SSC) precombiled library. For details on SAM, see
+    https://sam.nrel.gov. For downloading the SAM SDK (which includes code examples
+    in a variety of languages, including the ssc api header file), visit
+    https://sam.nrel.gov/sdk. 
+License: GPL v3
 Encoding: UTF-8
 LazyData: true
+Imports:
+    yaml
 Suggests: testthat
 LinkingTo: Rcpp
 Imports: Rcpp
