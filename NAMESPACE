@@ -2,7 +2,9 @@
 
 export(R_ssc_build_info)
 export(R_ssc_version)
+export(dataiotest)
 export(get_common_types)
 export(instantiate_class)
+export(pvwattstest)
 importFrom(Rcpp,sourceCpp)
 useDynLib(RSSC)
