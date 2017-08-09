@@ -5,25 +5,36 @@
 
 using namespace Rcpp;
 
-// dataiotest
-NumericVector dataiotest(NumericVector x);
-RcppExport SEXP _RSSC_dataiotest(SEXP xSEXP) {
+// dataiotest_num
+NumericVector dataiotest_num(NumericVector x);
+RcppExport SEXP _RSSC_dataiotest_num(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(dataiotest(x));
+    rcpp_result_gen = Rcpp::wrap(dataiotest_num(x));
     return rcpp_result_gen;
 END_RCPP
 }
-// pvwattstest
-Rcpp::NumericVector pvwattstest(Rcpp::CharacterVector filename);
-RcppExport SEXP _RSSC_pvwattstest(SEXP filenameSEXP) {
+// dataiotest_char
+CharacterVector dataiotest_char(CharacterVector x);
+RcppExport SEXP _RSSC_dataiotest_char(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type filename(filenameSEXP);
-    rcpp_result_gen = Rcpp::wrap(pvwattstest(filename));
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(dataiotest_char(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// dataiotest_log
+LogicalVector dataiotest_log(LogicalVector x);
+RcppExport SEXP _RSSC_dataiotest_log(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< LogicalVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(dataiotest_log(x));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -49,8 +60,9 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RSSC_dataiotest", (DL_FUNC) &_RSSC_dataiotest, 1},
-    {"_RSSC_pvwattstest", (DL_FUNC) &_RSSC_pvwattstest, 1},
+    {"_RSSC_dataiotest_num", (DL_FUNC) &_RSSC_dataiotest_num, 1},
+    {"_RSSC_dataiotest_char", (DL_FUNC) &_RSSC_dataiotest_char, 1},
+    {"_RSSC_dataiotest_log", (DL_FUNC) &_RSSC_dataiotest_log, 1},
     {"_RSSC_R_ssc_version", (DL_FUNC) &_RSSC_R_ssc_version, 0},
     {"_RSSC_R_ssc_build_info", (DL_FUNC) &_RSSC_R_ssc_build_info, 0},
     {NULL, NULL, 0}

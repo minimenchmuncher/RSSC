@@ -2,13 +2,18 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #'@export
-dataiotest <- function(x) {
-    .Call('_RSSC_dataiotest', PACKAGE = 'RSSC', x)
+dataiotest_num <- function(x) {
+    .Call('_RSSC_dataiotest_num', PACKAGE = 'RSSC', x)
 }
 
 #'@export
-pvwattstest <- function(filename) {
-    .Call('_RSSC_pvwattstest', PACKAGE = 'RSSC', filename)
+dataiotest_char <- function(x) {
+    .Call('_RSSC_dataiotest_char', PACKAGE = 'RSSC', x)
+}
+
+#'@export
+dataiotest_log <- function(x) {
+    .Call('_RSSC_dataiotest_log', PACKAGE = 'RSSC', x)
 }
 
 #'@export
