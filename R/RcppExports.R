@@ -2,6 +2,16 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #'@export
+R_ssc_version <- function() {
+    .Call('_RSSC_R_ssc_version', PACKAGE = 'RSSC')
+}
+
+#'@export
+R_ssc_build_info <- function() {
+    .Call('_RSSC_R_ssc_build_info', PACKAGE = 'RSSC')
+}
+
+#'@export
 dataiotest_num <- function(x) {
     .Call('_RSSC_dataiotest_num', PACKAGE = 'RSSC', x)
 }
@@ -17,12 +27,12 @@ dataiotest_log <- function(x) {
 }
 
 #'@export
-R_ssc_version <- function() {
-    .Call('_RSSC_R_ssc_version', PACKAGE = 'RSSC')
+dataiotest_nv <- function(x) {
+    .Call('_RSSC_dataiotest_nv', PACKAGE = 'RSSC', x)
 }
 
 #'@export
-R_ssc_build_info <- function() {
-    .Call('_RSSC_R_ssc_build_info', PACKAGE = 'RSSC')
+dataiotest_nummat <- function(x) {
+    .Call('_RSSC_dataiotest_nummat', PACKAGE = 'RSSC', x)
 }
 

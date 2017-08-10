@@ -86,77 +86,60 @@ LogicalVector dataiotest_log(LogicalVector x)
   return(res_lv);
 }
 
-/** Not ready yet
 //'@export
 // [[Rcpp::export]]
 NumericVector dataiotest_nv(NumericVector x)
 {
   ssc_data_t data = ssc_data_create();
-  int len_arr = 12;
-  ssc_number_t x_arr[len_arr];  //length not variable
+  int len_arr = x.size();
+  ssc_number_t *x_arr = (ssc_number_t*) malloc( sizeof(ssc_number_t)*len_arr);
   for ( int i=0; i<len_arr; i++ )
   {
     x_arr[i] = x[i];
   }
-  ssc_data_set_array(data, "poa_monthly", x_arr, len_arr);
+  ssc_data_set_array(data, "nday", x_arr, len_arr);
+  free(x_arr);
 
-  ssc_number_t *res_arr[len_arr] = ssc_data_get_array(data, "poa_monthly", len_arr);
-  ssc_data_get_array()
+  int len_res_arr = 0;  //I definitely don't understand this syntax.
+  ssc_number_t *res_arr = ssc_data_get_array(data, "nday", &len_res_arr);
+
+  NumericVector res_nv(len_arr);
+  for (int j=0; j<len_arr; j++)
+  {
+    res_nv[j] = res_arr[j];
+  }
+  ssc_data_free(data);
+  //free(res_arr); // this crashes. According to the ssc_guide, ssc_data_get_array()
+                   // reterns a reference to internally managed memory, and not to
+                   // deallocate it. Well, okay then.
+  return(res_nv);
 }
-
-**/
-
-/**
-CharacterVector dataiotest_fpath(CharacterVector x) {
-
-}
-
 
 //'@export
 // [[Rcpp::export]]
-Rcpp::NumericVector pvwattstest(Rcpp::CharacterVector filename) {
+NumericMatrix dataiotest_nummat(NumericMatrix x)
+{
   ssc_data_t data = ssc_data_create();
-  //marshall the filename input
-  string str_filename = as<string>(filename);
-  const char * char_filename = str_filename.c_str();
+  // Essentially like a numeric vector, but with rows and columns.
+  int cols = x.cols();
+  int rows = x.rows();
+  int len = x.length();  //going to assume here
+  ssc_number_t *x_mat = (ssc_number_t*) malloc(sizeof(ssc_number_t)*len);
 
-  // add data to container
-  ssc_data_set_string(data, "solar_resource_file", char_filename);
-  ssc_data_set_number(data, "system_capacity", 1.0f); // 1 kW
-  ssc_data_set_number(data, "losses", 14.0f);  //losses in %
-  ssc_data_set_number(data, "array_type", 0);  // fixed tilt
-  ssc_data_set_number(data, "tilt", 20);  // 20 deg tilt
-  ssc_data_set_number(data, "azimuth", 180); // facing south
-  ssc_data_set_number(data, "adjust:constant", 0.0f); //energy adjustment constant
+  for ( int i=0; i<len; i++)
+    x_mat[i] = x[i];  //maybe this will work
 
-  // create module
-  ssc_module_t module = ssc_module_create( "pvwattsv5" );
-  if ( NULL == module )
+  ssc_data_set_matrix(data, "mat1", x_mat, rows, cols);
+  free(x_mat);
+
+  int res_rows, res_cols;
+  ssc_number_t *res_mat = ssc_data_get_matrix(data, "mat1", &res_rows, &res_cols);
+  NumericMatrix res_nm(res_rows, res_cols);
+  for (int j=0; j<len; j++)
   {
-    ssc_data_free( data );
-    Rcpp::stop("error: could not create 'pvwattsv5 module.\n");
-    return -1;
+    res_nm[j] = res_mat[j];
   }
 
-  //run module
-  if ( ssc_module_exec( module, data ) == 0 )
-  {
-    ssc_module_free( module );
-    ssc_data_free( data );
-    Rcpp::stop("Error during simplation.\n");
-    return -1;
-  }
-
-  // ac variable
-  int len = 0;
-  Rcpp::NumericVector res;
-  ssc_number_t *ac = ssc_data_get_array(data, "ac", &len );
-  if ( ac != NULL )
-  {
-    int i;
-    for ( i=0; i<len; i++ )
-      res[i] = ac[i];
-  }
-  return res;
+  ssc_data_free(data);
+  return(res_nm);
 }
-**/

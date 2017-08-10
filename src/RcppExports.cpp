@@ -5,6 +5,26 @@
 
 using namespace Rcpp;
 
+// R_ssc_version
+int R_ssc_version();
+RcppExport SEXP _RSSC_R_ssc_version() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(R_ssc_version());
+    return rcpp_result_gen;
+END_RCPP
+}
+// R_ssc_build_info
+std::string R_ssc_build_info();
+RcppExport SEXP _RSSC_R_ssc_build_info() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(R_ssc_build_info());
+    return rcpp_result_gen;
+END_RCPP
+}
 // dataiotest_num
 NumericVector dataiotest_num(NumericVector x);
 RcppExport SEXP _RSSC_dataiotest_num(SEXP xSEXP) {
@@ -38,33 +58,37 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// R_ssc_version
-int R_ssc_version();
-RcppExport SEXP _RSSC_R_ssc_version() {
+// dataiotest_nv
+NumericVector dataiotest_nv(NumericVector x);
+RcppExport SEXP _RSSC_dataiotest_nv(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(R_ssc_version());
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(dataiotest_nv(x));
     return rcpp_result_gen;
 END_RCPP
 }
-// R_ssc_build_info
-std::string R_ssc_build_info();
-RcppExport SEXP _RSSC_R_ssc_build_info() {
+// dataiotest_nummat
+NumericMatrix dataiotest_nummat(NumericMatrix x);
+RcppExport SEXP _RSSC_dataiotest_nummat(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(R_ssc_build_info());
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(dataiotest_nummat(x));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_RSSC_R_ssc_version", (DL_FUNC) &_RSSC_R_ssc_version, 0},
+    {"_RSSC_R_ssc_build_info", (DL_FUNC) &_RSSC_R_ssc_build_info, 0},
     {"_RSSC_dataiotest_num", (DL_FUNC) &_RSSC_dataiotest_num, 1},
     {"_RSSC_dataiotest_char", (DL_FUNC) &_RSSC_dataiotest_char, 1},
     {"_RSSC_dataiotest_log", (DL_FUNC) &_RSSC_dataiotest_log, 1},
-    {"_RSSC_R_ssc_version", (DL_FUNC) &_RSSC_R_ssc_version, 0},
-    {"_RSSC_R_ssc_build_info", (DL_FUNC) &_RSSC_R_ssc_build_info, 0},
+    {"_RSSC_dataiotest_nv", (DL_FUNC) &_RSSC_dataiotest_nv, 1},
+    {"_RSSC_dataiotest_nummat", (DL_FUNC) &_RSSC_dataiotest_nummat, 1},
     {NULL, NULL, 0}
 };
 
