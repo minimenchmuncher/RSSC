@@ -11,3 +11,28 @@ R_ssc_build_info <- function() {
     .Call('_RSSC_R_ssc_build_info', PACKAGE = 'RSSC')
 }
 
+#'@export
+dataiotest_num <- function(x) {
+    .Call('_RSSC_dataiotest_num', PACKAGE = 'RSSC', x)
+}
+
+#'@export
+dataiotest_char <- function(x) {
+    .Call('_RSSC_dataiotest_char', PACKAGE = 'RSSC', x)
+}
+
+#'@export
+dataiotest_log <- function(x) {
+    .Call('_RSSC_dataiotest_log', PACKAGE = 'RSSC', x)
+}
+
+#'@export
+dataiotest_nv <- function(x) {
+    .Call('_RSSC_dataiotest_nv', PACKAGE = 'RSSC', x)
+}
+
+#'@export
+dataiotest_nummat <- function(x) {
+    .Call('_RSSC_dataiotest_nummat', PACKAGE = 'RSSC', x)
+}
+

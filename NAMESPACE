@@ -2,6 +2,11 @@
 
 export(R_ssc_build_info)
 export(R_ssc_version)
+export(dataiotest_char)
+export(dataiotest_log)
+export(dataiotest_num)
+export(dataiotest_nummat)
+export(dataiotest_nv)
 export(get_common_types)
 export(instantiate_class)
 importFrom(Rcpp,sourceCpp)
