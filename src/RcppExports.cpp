@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// pvwattstest
+NumericVector pvwattstest(CharacterVector filename);
+RcppExport SEXP _RSSC_pvwattstest(SEXP filenameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type filename(filenameSEXP);
+    rcpp_result_gen = Rcpp::wrap(pvwattstest(filename));
+    return rcpp_result_gen;
+END_RCPP
+}
 // R_ssc_version
 int R_ssc_version();
 RcppExport SEXP _RSSC_R_ssc_version() {
@@ -82,6 +93,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_RSSC_pvwattstest", (DL_FUNC) &_RSSC_pvwattstest, 1},
     {"_RSSC_R_ssc_version", (DL_FUNC) &_RSSC_R_ssc_version, 0},
     {"_RSSC_R_ssc_build_info", (DL_FUNC) &_RSSC_R_ssc_build_info, 0},
     {"_RSSC_dataiotest_num", (DL_FUNC) &_RSSC_dataiotest_num, 1},

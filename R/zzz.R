@@ -5,6 +5,13 @@ get_common_types <- function(common_types_file = system.file("classes.yml",
 }
 
 
+findpkg <- function() {
+  if (.Platform$OS.type == "windows") {
+    Sys.setenv("PATH" = paste(Sys.getenv("PATH"),
+                              "C:\\SAM\\sam-sdk-2017-1-17-r4\\win64", sep = ';'))
+  }
+}
+
 .onLoad <- function(libname, pkgname) {
   # common types
   if ("RSSC_common_types" %in% search()) detach(RSSC_common_types)
