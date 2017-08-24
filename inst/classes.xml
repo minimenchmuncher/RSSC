@@ -1,0 +1,10 @@
+<?xml version="1.0" ecoding="UTF-8"?>
+<classtemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation = "classtemplate.xsd">
+  <class name="pvwattsv5">
+    <attr type="character" default="NA_character_" require="FALSE">solar_resource_file</attr>
+    <attr type="data.frame" default="data.frame()" require="FALSE">solar_resource_data</attr>
+    <attr type="numeric" default="NA_real_" require="TRUE">system_capacity</attr>
+  </class>
+</classtemplate>
+  

@@ -1,0 +1,6 @@
+{
+  "execPath": "C:/Rtools/mingw_64/bin/c++.exe",
+  "gccDefaultCppFlags": "-Wall -std=c++11",
+  "gccIncludePaths": "C:/Program Files/R/R-3.4.1/library/Rcpp/include,C:/SAM/sam-sdk-2017-1-17-r4",
+  "gccErrorLimit": 15
+}

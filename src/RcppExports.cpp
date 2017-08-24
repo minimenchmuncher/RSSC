@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// pvwattsv5
+List pvwattsv5(List x);
+RcppExport SEXP _RSSC_pvwattsv5(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(pvwattsv5(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // pvwattstest
 NumericVector pvwattstest(CharacterVector filename);
 RcppExport SEXP _RSSC_pvwattstest(SEXP filenameSEXP) {
@@ -93,6 +104,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_RSSC_pvwattsv5", (DL_FUNC) &_RSSC_pvwattsv5, 1},
     {"_RSSC_pvwattstest", (DL_FUNC) &_RSSC_pvwattstest, 1},
     {"_RSSC_R_ssc_version", (DL_FUNC) &_RSSC_R_ssc_version, 0},
     {"_RSSC_R_ssc_build_info", (DL_FUNC) &_RSSC_R_ssc_build_info, 0},
