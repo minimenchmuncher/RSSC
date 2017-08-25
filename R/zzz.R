@@ -25,4 +25,9 @@ findpkg <- function() {
   RSSC_common_types <- list2env(common_types)
   attach(RSSC_common_types)
   rm(i, j)
+  packageStartupMessage(sprintf("SSC Library:\n%s", R_ssc_build_info()))
+}
+
+.onUnload <- function(libpath) {
+  library.dynam.unload("RSSC", libpath)
 }

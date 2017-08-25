@@ -16,16 +16,9 @@ List pvwattsv5(List x)
   NumericVector v_azimuth = as<NumericVector>(x["azimuth"]);
   NumericVector v_adjust__constant = as<NumericVector>(x["adjust__constant"]);
 
+  Rcout << as<CharacterVector>(x["gcr"]);
   string str_filename = as<string>(v_filename[0]);
   const char * filename = str_filename.c_str();
-/*
-  float system_capacity = v_system_capacity[0];
-  float losses = v_losses[0];
-  int array_type = v_array_type[0];
-  float tilt = v_tilt[0];
-  float azimuth = v_azimuth[0];
-  float adjust__constant = v_adjust__constant[0];
- */
 
   ssc_data_t data = ssc_data_create();
   ssc_data_set_string(data, "solar_resource_file", filename);
@@ -58,6 +51,7 @@ List pvwattsv5(List x)
   int len = 0;
   int yrlen = 8760;
   // initialize res with len from sdktool (hourly tseries)
+
   NumericVector gh(yrlen);
   NumericVector dn(yrlen);
   NumericVector df(yrlen);
@@ -77,23 +71,6 @@ List pvwattsv5(List x)
   NumericVector dc_monthly(12);
   NumericVector ac_monthly(12);
   NumericVector monthly_energy(12);
-
-  NumericVector solrad_annual(1);
-  NumericVector ac_annual(1);
-  NumericVector annual_energy(1);
-  NumericVector capacity_factor(1);
-  NumericVector kwh_per_kw(1);
-  CharacterVector location(1);
-  CharacterVector city(1);
-  CharacterVector state(1);
-  NumericVector lat(1);
-  NumericVector lon(1);
-  NumericVector tz(1);
-  NumericVector elev(1);
-  NumericVector inverter_model(1);
-  NumericVector inverter_efficiency(1);
-  NumericVector ts_shift_hours(1);
-  NumericVector system_use_lifetime_output(1);
 
   // extract vars
   ssc_number_t *ssc_gh = ssc_data_get_array(data, "gh", &len );
@@ -143,28 +120,80 @@ List pvwattsv5(List x)
     monthly_energy[i] = ssc_monthly_energy[i];
   }
 
+  ssc_number_t solrad_annual;
+  ssc_number_t ac_annual;
+  ssc_number_t annual_energy;
+  ssc_number_t capacity_factor;
+  ssc_number_t kwh_per_kw;
+  ssc_number_t lat;
+  ssc_number_t lon;
+  ssc_number_t elev;
+  ssc_number_t inverter_model;
+  ssc_number_t inverter_efficiency;
+  ssc_number_t ts_shift_hours;
+  ssc_number_t system_use_lifetime_output;
+  ssc_number_t tz;
+
+  ssc_data_get_number(data, "solrad_annual", &solrad_annual);
+  ssc_data_get_number(data, "ac_annual", &ac_annual);
+  ssc_data_get_number(data, "annual_energy", &annual_energy);
+  ssc_data_get_number(data, "capacity_factor", &capacity_factor);
+  ssc_data_get_number(data, "kwh_per_kw", &kwh_per_kw);
+  ssc_data_get_number(data, "lat", &lat);
+  ssc_data_get_number(data, "lon", &lon);
+  ssc_data_get_number(data, "elev", &elev);
+  ssc_data_get_number(data, "inverter_model", &inverter_model);
+  ssc_data_get_number(data, "inverter_efficiency", &inverter_efficiency);
+  ssc_data_get_number(data, "ts_shift_hours", &ts_shift_hours);
+  ssc_data_get_number(data, "system_use_lifetime_output", &system_use_lifetime_output);
+  ssc_data_get_number(data, "tz", &tz);
+
+  const char *ssc_location = ssc_data_get_string(data, "location");
+  string location = string(ssc_location);
+
+  const char *ssc_city = ssc_data_get_string(data, "city");
+  string city = string(ssc_city);
+
+  const char *ssc_state = ssc_data_get_string(data, "state");
+  string state = string(ssc_state);
+
   // free module & data
   ssc_module_free(module);
   ssc_data_free(data);
 
-  return List::create(Named("gh") = gh,
-                      Named("dn") = dn,
-                      Named("df") = df,
-                      Named("tamb") = tamb,
-                      Named("wspd") = wspd,
-                      Named("sunup") = sunup,
-                      Named("shad_beam_factor") = shad_beam_factor,
-                      Named("aoi") = aoi,
-                      Named("poi") = poa,
-                      Named("tpoa") = tpoa,
-                      Named("tcell") = tcell,
-                      Named("dc") = dc,
-                      Named("ac") = ac,
-                      Named("poa_monthly") = poa_monthly,
-                      Named("solrad_monthly") = solrad_monthly,
-                      Named("dc_monthly") = dc_monthly,
-                      Named("ac_monthly") = ac_monthly,
-                      Named("monthly_energy") = monthly_energy);
+  List res = List::create(Named("filename") = x["filename"],
+                          Named("gh") = gh,
+                          Named("dn") = dn,
+                          Named("df") = df,
+                          Named("tamb") = tamb,
+                          Named("wspd") = wspd,
+                          Named("sunup") = sunup,
+                          Named("shad_beam_factor") = shad_beam_factor,
+                          Named("aoi") = aoi,
+                          Named("poi") = poa,
+                          Named("tpoa") = tpoa,
+                          Named("tcell") = tcell,
+                          Named("dc") = dc,
+                          Named("ac") = ac,
+                          Named("poa_monthly") = poa_monthly,
+                          Named("solrad_monthly") = solrad_monthly,
+                          Named("dc_monthly") = dc_monthly,
+                          Named("ac_monthly") = ac_monthly,
+                          Named("monthly_energy") = monthly_energy);
+  res["solrad_annual"] = solrad_annual;
+  res["ac_annual"] = ac_annual;
+  res["annual_energy"] = annual_energy;
+  res["location"] = location;
+  res["city"] = city;
+  res["state"] = state;
+  res["lat"] = lat;
+  res["lon"] = lon;
+  res["tz"] = tz;
+  res["elev"] = elev;
+  res["inverter_model"] = inverter_model;
+  res["ts_shift_hours"] = ts_shift_hours;
+  res["system_use_lifetime_output"] = system_use_lifetime_output;
+  return(res);
 }
 
 
