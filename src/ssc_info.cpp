@@ -10,6 +10,7 @@ int R_ssc_version() {
   return version;
 }
 
+
 // apparently, this works fine keeping as a string - R must be able to do that
 // conversion itself.
 //'@export

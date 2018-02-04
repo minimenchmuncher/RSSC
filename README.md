@@ -8,13 +8,23 @@ In short, SAM is an exceptionally powerful and useful tool for modeling a variet
 
 ## Installation
 
-Currently Windows is the only supported OS. Since this package requires a non-open precompiled library, it is not (and likely never will be) on CRAN.
+Currently, Windows and Linux are the supported OSes, MacOS will be more fully supported soon (although you may try, and if you do, make a PR with any edits you made!). In the past SAM has been offered only as a pre-compilied library, they have since gone [open-source](https://github.com/NREL/SAM). The instructions that follow involve utilizing the pre-compiled binary. Until such a time as that changes, this package will not be available on CRAN.
 
 In order to get started, you must register with NREL as a software developer at [https://sam.nrel.gov/sdk](https://sam.nrel.gov/sdk). Download the SDK, and note the download location.
 
-Theoretically, the whole SDK is not necessary, only the binary and its associated header file. The binary itself is also distributed through the SAM program, obviating the need to download the SDK. However, at this point, there is an open legal question about the header file and its redistribution.
+Theoretically, the whole SDK is not necessary, only the binary and its associated header file. The binary itself is also distributed through the SAM program, obviating the need to download the SDK.
 
 It is, at this point, not recommended to install this package using `devtools::install_github()`. Please see OS specific details for installation instructions. If you encounter issues in installation, raise an issue on this github page.
+
+### Linux
+1. After you have downloaded the SAM SDK, `git clone` this repository.
+2. Next, copy the header file `sscapi.h` somewhere that makes sense (for example `/usr/include` or
+   `/usr/local/include`)
+3. And also copy the actual library `ssc.so` somewhere that makes sense (for example `/usr/lib` or
+   `/usr/local/lib`)
+4. Build
+
+As a note, this package uses `autoconf` to generate the configure script as opposed to using "anticonf"/`pkg-config` (see `xml2` for a good example). Since the library and header file must be installed manually this option does not seem to work at this time.
 
 ### Windows
 
@@ -25,9 +35,13 @@ It is, at this point, not recommended to install this package using `devtools::i
 3. Build
 4. Test - run `RSSC::R_ssc_build_info()`
 
+This will be revised shortly.
+
 ### Mac
 
-### Linux
+This has not yet been attempted. It ought to work the same as the Linux instructions above. Be aware you'll need XCode at a minimum for compiling. The package has only been tested using `g++` on linux and Windows (through `Rtools`). Furthermore, the linux version (hence possibly the mac version as well) requires linking to `libdl` in addition to `ssc`, you need to make sure that is find-able.
+
+Lastly, on account of the way `ssc` was distributed, you'll need to edit the provided `configure.ac` file so it finds the mac `ssc.dylib` instead of a linux `ssc.so`. Again, if you have questions or have done a successful install on a mac, do a pull request of your changes.
 
 ## To Do
 
