@@ -45,3 +45,21 @@ test_that("Instance of pvwattsv5 obj raises errors", {
                regexp = "attribute tilt.*character.*numeric")
 
 })
+
+test_that("Calculates properly with actual rsc file", {
+  # uses TMY3 for Boston Logan, USA tmy file. Provided in inst
+  pvwatts_inputs <- list(solar_resource_file = "../../inst/USA MA Boston Logan Int'l Arpt (TMY3).csv",
+                         system_capacity = 10,
+                         losses = 0.03,
+                         array_type = 0L,
+                         tilt = 30,
+                         azimuth = 180,
+                         adjust_constant = 1)
+  pvwatts_obj <- instantiate_class(pvwatts_inputs, cls = "pvwattsv5")
+
+  # run with resource provided
+  test_out <- pvwattsv5(pvwatts_obj)
+  ncf <- sum(test_out$ac) / (8760 * 1000 * pvwatts_inputs$system_capacity)
+  expect_equal(mean(test_out$ac), 1771.911, tolerance = 0.01)
+  expect_equal(ncf, 0.1772, tolerance = 0.0001)
+})

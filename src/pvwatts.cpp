@@ -8,15 +8,14 @@ using namespace std;
 // [[Rcpp::export]]
 List pvwattsv5(List x)
 {
-  CharacterVector v_filename = as<CharacterVector>(x["filename"]);
+  CharacterVector v_filename = as<CharacterVector>(x["solar_resource_file"]);
   NumericVector v_system_capacity = as<NumericVector>(x["system_capacity"]);
   NumericVector v_losses = as<NumericVector>(x["losses"]);
   NumericVector v_array_type = as<NumericVector>(x["array_type"]);
   NumericVector v_tilt = as<NumericVector>(x["tilt"]);
   NumericVector v_azimuth = as<NumericVector>(x["azimuth"]);
-  NumericVector v_adjust__constant = as<NumericVector>(x["adjust__constant"]);
+  NumericVector v_adjust__constant = as<NumericVector>(x["adjust_constant"]);
 
-  Rcout << as<CharacterVector>(x["gcr"]);
   string str_filename = as<string>(v_filename[0]);
   const char * filename = str_filename.c_str();
 
@@ -161,7 +160,7 @@ List pvwattsv5(List x)
   ssc_module_free(module);
   ssc_data_free(data);
 
-  List res = List::create(Named("filename") = x["filename"],
+  List res = List::create(Named("solar_resource_file") = x["solar_resource_file"],
                           Named("gh") = gh,
                           Named("dn") = dn,
                           Named("df") = df,
