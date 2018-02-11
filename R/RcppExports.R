@@ -2,8 +2,8 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #'@export
-pvwattsv5 <- function(x) {
-    .Call('_RSSC_pvwattsv5', PACKAGE = 'RSSC', x)
+rcpp_pvwattsv5 <- function(x) {
+    .Call('_RSSC_rcpp_pvwattsv5', PACKAGE = 'RSSC', x)
 }
 
 #'@export

@@ -6,7 +6,7 @@ using namespace std;
 
 //'@export
 // [[Rcpp::export]]
-List pvwattsv5(List x)
+List rcpp_pvwattsv5(List x)
 {
   CharacterVector v_filename = as<CharacterVector>(x["solar_resource_file"]);
   NumericVector v_system_capacity = as<NumericVector>(x["system_capacity"]);
